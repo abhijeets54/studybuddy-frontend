@@ -8,8 +8,6 @@ import ViewNoteModal from '../components/modals/ViewNoteModal.jsx';
 import toast from 'react-hot-toast';
 import {
   PlusIcon,
-  MagnifyingGlassIcon,
-  FunnelIcon,
   PencilIcon,
   TrashIcon,
   HeartIcon,
@@ -23,12 +21,7 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
-  const [subjects, setSubjects] = useState([]);
-  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedDifficulty, setSelectedDifficulty] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
@@ -37,17 +30,11 @@ const Notes = () => {
 
   useEffect(() => {
     fetchNotes();
-    fetchSubjects();
-    fetchTags();
   }, []);
 
   const fetchNotes = async () => {
     try {
-      const response = await notesAPI.getNotes({
-        search: searchTerm,
-        subject: selectedSubject,
-        difficulty: selectedDifficulty
-      });
+      const response = await notesAPI.getNotes();
       const notesData = response.data.results || response.data;
       setNotes(Array.isArray(notesData) ? notesData : []);
     } catch (error) {
@@ -57,36 +44,6 @@ const Notes = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const fetchSubjects = async () => {
-    try {
-      const response = await notesAPI.getSubjects();
-      // Handle paginated response format
-      const subjectsData = response.data.results || response.data;
-      setSubjects(Array.isArray(subjectsData) ? subjectsData : []);
-    } catch (error) {
-      console.error('Failed to fetch subjects:', error);
-      setSubjects([]); // Set empty array on error
-      toast.error('Failed to fetch subjects');
-    }
-  };
-
-  const fetchTags = async () => {
-    try {
-      const response = await notesAPI.getTags();
-      // Handle paginated response format
-      const tagsData = response.data.results || response.data;
-      setTags(Array.isArray(tagsData) ? tagsData : []);
-    } catch (error) {
-      console.error('Failed to fetch tags:', error);
-      setTags([]); // Set empty array on error
-      toast.error('Failed to fetch tags');
-    }
-  };
-
-  const handleSearch = () => {
-    fetchNotes();
   };
 
   const handleDeleteNote = async (noteId) => {
@@ -238,65 +195,6 @@ const Notes = () => {
           </div>
         </motion.div>
 
-        {/* Search and Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 mb-8"
-        >
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Search */}
-            <div className="flex-1">
-              <div className="relative">
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search notes..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                />
-              </div>
-            </div>
-
-            {/* Filters */}
-            <div className="flex gap-4">
-              <select
-                value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)}
-                className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              >
-                <option value="">All Subjects</option>
-                {Array.isArray(subjects) && subjects.map(subject => (
-                  <option key={subject.id} value={subject.id}>{subject.name}</option>
-                ))}
-              </select>
-
-              <select
-                value={selectedDifficulty}
-                onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              >
-                <option value="">All Difficulties</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleSearch}
-                className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors flex items-center"
-              >
-                <FunnelIcon className="h-5 w-5 mr-2" />
-                Filter
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
 
         {/* Notes Grid */}
         <motion.div
