@@ -254,10 +254,10 @@ const Home = () => {
                   <p className="text-secondary-600 mb-4 leading-relaxed">
                     {feature.description}
                   </p>
-                  <div className="flex items-center text-primary-600 font-semibold text-sm group-hover:text-primary-700 transition-colors duration-300">
+                  {/* <div className="flex items-center text-primary-600 font-semibold text-sm group-hover:text-primary-700 transition-colors duration-300">
                     Learn more
                     <ArrowRightIcon className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
+                  </div> */}
                 </motion.div>
               );
             })}
