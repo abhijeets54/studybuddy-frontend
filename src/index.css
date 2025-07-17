@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Professional Scholar + AI Theme Colors */
+    --primary-50: 240 244 255;
+    --primary-100: 224 233 255;
+    --primary-200: 199 214 254;
+    --primary-300: 165 184 252;
+    --primary-400: 139 147 248;
+    --primary-500: 124 109 242;
+    --primary-600: 109 76 230;
+    --primary-700: 93 61 203;
+    --primary-800: 76 50 164;
+    --primary-900: 63 42 130;
+    --primary-950: 38 26 79;
+
+    --secondary-50: 248 250 252;
+    --secondary-100: 241 245 249;
+    --secondary-200: 226 232 240;
+    --secondary-300: 203 213 225;
+    --secondary-400: 148 163 184;
+    --secondary-500: 100 116 139;
+    --secondary-600: 71 85 105;
+    --secondary-700: 51 65 85;
+    --secondary-800: 30 41 59;
+    --secondary-900: 15 23 42;
+    --secondary-950: 2 6 23;
+
+    --accent-50: 253 244 255;
+    --accent-100: 250 232 255;
+    --accent-200: 245 208 254;
+    --accent-300: 240 171 252;
+    --accent-400: 232 121 249;
+    --accent-500: 217 70 239;
+    --accent-600: 192 38 211;
+    --accent-700: 162 28 175;
+    --accent-800: 134 25 143;
+    --accent-900: 112 26 117;
+    --accent-950: 74 4 78;
+
+    --scholar-50: 240 247 255;
+    --scholar-100: 224 239 255;
+    --scholar-200: 185 221 255;
+    --scholar-300: 124 196 255;
+    --scholar-400: 54 167 255;
+    --scholar-500: 12 140 233;
+    --scholar-600: 0 108 199;
+    --scholar-700: 0 86 161;
+    --scholar-800: 2 73 133;
+    --scholar-900: 8 62 110;
+    --scholar-950: 5 39 73;
+
+    --ai-50: 244 243 255;
+    --ai-100: 235 233 254;
+    --ai-200: 217 214 254;
+    --ai-300: 191 184 252;
+    --ai-400: 160 144 248;
+    --ai-500: 139 92 246;
+    --ai-600: 124 58 237;
+    --ai-700: 109 40 217;
+    --ai-800: 91 33 182;
+    --ai-900: 76 29 149;
+    --ai-950: 46 16 101;
+
+    --success-50: 240 253 244;
+    --success-100: 220 252 231;
+    --success-200: 187 247 208;
+    --success-300: 134 239 172;
+    --success-400: 74 222 128;
+    --success-500: 34 197 94;
+    --success-600: 22 163 74;
+    --success-700: 21 128 61;
+    --success-800: 22 101 52;
+    --success-900: 20 83 45;
+    --success-950: 5 46 22;
+
+    --warning-50: 255 251 235;
+    --warning-100: 254 243 199;
+    --warning-200: 253 230 138;
+    --warning-300: 252 211 77;
+    --warning-400: 251 191 36;
+    --warning-500: 245 158 11;
+    --warning-600: 217 119 6;
+    --warning-700: 180 83 9;
+    --warning-800: 146 64 14;
+    --warning-900: 120 53 15;
+    --warning-950: 69 26 3;
+
+    --error-50: 254 242 242;
+    --error-100: 254 226 226;
+    --error-200: 254 202 202;
+    --error-300: 252 165 165;
+    --error-400: 248 113 113;
+    --error-500: 239 68 68;
+    --error-600: 220 38 38;
+    --error-700: 185 28 28;
+    --error-800: 153 27 27;
+    --error-900: 127 29 29;
+    --error-950: 69 10 10;
+
+    --foreground-rgb: 15, 23, 42;
+    --background-rgb: 255, 255, 255;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--secondary-100));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--primary-400));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--primary-500));
+  }
+}
+
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-semibold
+           hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all duration-200
+           shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-primary-300;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-gradient-to-r from-secondary-100 to-secondary-200 text-secondary-800 rounded-xl font-semibold
+           hover:from-secondary-200 hover:to-secondary-300 transform hover:scale-105 transition-all duration-200
+           shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-secondary-300;
+  }
+
+  .btn-accent {
+    @apply px-6 py-3 bg-gradient-to-r from-accent-500 to-accent-600 text-white rounded-xl font-semibold
+           hover:from-accent-600 hover:to-accent-700 transform hover:scale-105 transition-all duration-200
+           shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-accent-300;
+  }
+
+  .btn-scholar {
+    @apply px-6 py-3 bg-gradient-to-r from-scholar-500 to-scholar-600 text-white rounded-xl font-semibold
+           hover:from-scholar-600 hover:to-scholar-700 transform hover:scale-105 transition-all duration-200
+           shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-scholar-300;
+  }
+
+  .btn-ai {
+    @apply px-6 py-3 bg-gradient-to-r from-ai-500 to-ai-600 text-white rounded-xl font-semibold
+           hover:from-ai-600 hover:to-ai-700 transform hover:scale-105 transition-all duration-200
+           shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-ai-300;
+  }
+
+  /* Card Components */
+  .card {
+    @apply bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300
+           border border-secondary-100 hover:border-primary-200 transform hover:-translate-y-1;
+  }
+
+  .card-scholar {
+    @apply bg-gradient-to-br from-scholar-50 to-white rounded-2xl shadow-scholar p-8
+           hover:shadow-xl transition-all duration-300 border border-scholar-100
+           hover:border-scholar-200 transform hover:-translate-y-1;
+  }
+
+  .card-ai {
+    @apply bg-gradient-to-br from-ai-50 to-white rounded-2xl shadow-ai p-8
+           hover:shadow-xl transition-all duration-300 border border-ai-100
+           hover:border-ai-200 transform hover:-translate-y-1;
+  }
+
+  .card-feature {
+    @apply bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300
+           border border-secondary-100 hover:border-primary-200 transform hover:-translate-y-2
+           hover:scale-105 cursor-pointer;
+  }
+
+  /* Input Components */
+  .input-field {
+    @apply w-full px-4 py-3 border border-secondary-300 rounded-xl bg-white text-secondary-900
+           placeholder-secondary-400 focus:ring-4 focus:ring-primary-300 focus:border-primary-500
+           transition-all duration-200 hover:border-secondary-400;
+  }
+
+  .input-scholar {
+    @apply w-full px-4 py-3 border border-scholar-300 rounded-xl bg-scholar-50 text-secondary-900
+           placeholder-secondary-400 focus:ring-4 focus:ring-scholar-300 focus:border-scholar-500
+           transition-all duration-200 hover:border-scholar-400;
+  }
+
+  .input-ai {
+    @apply w-full px-4 py-3 border border-ai-300 rounded-xl bg-ai-50 text-secondary-900
+           placeholder-secondary-400 focus:ring-4 focus:ring-ai-300 focus:border-ai-500
+           transition-all duration-200 hover:border-ai-400;
+  }
+
+  /* Text Components */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-scholar {
+    @apply bg-gradient-to-r from-scholar-600 to-scholar-800 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-ai {
+    @apply bg-gradient-to-r from-ai-600 to-ai-800 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent-600 to-accent-800 bg-clip-text text-transparent;
+  }
+
+  /* Background Components */
+  .bg-hero {
+    @apply bg-gradient-to-br from-primary-50 via-white to-accent-50;
+  }
+
+  .bg-scholar-gradient {
+    @apply bg-gradient-to-r from-scholar-600 to-scholar-700;
+  }
+
+  .bg-ai-gradient {
+    @apply bg-gradient-to-r from-ai-600 to-ai-700;
+  }
+
+  .bg-primary-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-primary-700;
+  }
+
+  /* Modal Components */
+  .modal-overlay {
+    @apply fixed inset-0 bg-secondary-900 bg-opacity-50 backdrop-blur-sm;
+    z-index: 9998;
+  }
+
+  .modal-content {
+    @apply relative bg-white rounded-2xl shadow-2xl border border-secondary-200;
+    z-index: 9999;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-container {
+    @apply fixed inset-0 flex items-center justify-center p-4;
+    z-index: 9999;
+  }
+
+  /* Icon Components */
+  .icon-primary {
+    @apply w-6 h-6 text-primary-600;
+  }
+
+  .icon-scholar {
+    @apply w-6 h-6 text-scholar-600;
+  }
+
+  .icon-ai {
+    @apply w-6 h-6 text-ai-600;
+  }
+
+  .icon-accent {
+    @apply w-6 h-6 text-accent-600;
+  }
+
+  /* Animation Components - These are already defined in Tailwind config */
+
+  /* Utility Components */
+  .glass-effect {
+    @apply bg-white bg-opacity-20 backdrop-blur-lg border border-white border-opacity-30;
+  }
+
+  /* Custom Shadow Utilities */
+  .shadow-scholar {
+    box-shadow: 0 10px 25px -3px rgba(12, 140, 233, 0.1), 0 4px 6px -2px rgba(12, 140, 233, 0.05);
+  }
+
+  .shadow-ai {
+    box-shadow: 0 10px 25px -3px rgba(139, 92, 246, 0.1), 0 4px 6px -2px rgba(139, 92, 246, 0.05);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(124, 109, 242, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 40px rgba(124, 109, 242, 0.4);
+  }
+}
