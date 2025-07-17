@@ -45,7 +45,12 @@ const Quizzes = () => {
   };
 
   const handleDeleteQuiz = async (quizId) => {
-    if (window.confirm('Are you sure you want to delete this quiz?')) {
+    const confirmDelete = () => {
+      toast.dismiss(); // Dismiss any existing toasts
+      performDelete();
+    };
+
+    const performDelete = async () => {
       try {
         await quizzesAPI.deleteQuiz(quizId);
         setQuizzes(quizzes.filter(quiz => quiz.id !== quizId));
@@ -53,7 +58,39 @@ const Quizzes = () => {
       } catch (error) {
         toast.error('Failed to delete quiz');
       }
-    }
+    };
+
+    // Show confirmation toast with action buttons
+    toast((t) => (
+      <div className="flex flex-col space-y-3">
+        <span className="font-medium text-gray-900">
+          Are you sure you want to delete this quiz?
+        </span>
+        <div className="flex space-x-2">
+          <button
+            onClick={confirmDelete}
+            className="px-3 py-1 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors"
+          >
+            Delete
+          </button>
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="px-3 py-1 bg-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-400 transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ), {
+      duration: 10000, // Keep toast open longer for user decision
+      style: {
+        background: '#fff',
+        color: '#000',
+        border: '1px solid #e5e7eb',
+        borderRadius: '8px',
+        padding: '16px',
+      },
+    });
   };
 
   const handleStartQuiz = (quiz) => {
