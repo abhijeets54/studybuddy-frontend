@@ -418,9 +418,6 @@ npm run dev -- --force
 - Update documentation
 - Maintain backwards compatibility
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -438,10 +435,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 💡 **Feature Requests**: Open a discussion or issue
 - 💬 **Community**: Join our Discord/Slack community
 
-### Contact
-- **Email**: support@studybuddy.com
-- **Website**: [studybuddy.com](https://studybuddy.com)
-- **Twitter**: [@StudyBuddyApp](https://twitter.com/StudyBuddyApp)
 
 ---
 
